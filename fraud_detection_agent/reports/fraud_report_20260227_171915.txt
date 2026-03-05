@@ -1,0 +1,39 @@
+Ayushman Bharat Fraud Detection Report
+============================================================
+
+Generated at: 2026-02-27T17:19:15
+
+Summary
+------------------------------------------------------------
+Total claims analysed       : 31500
+Suspicious (ML) claims      : 3
+Rule-flagged claims         : 2002
+
+Top 5 Risky Hospitals (by average risk score)
+------------------------------------------------------------
+Varanasi Sanjivani Hospital (HOSP_050) | State: Uttar Pradesh | District: Varanasi | Type: Private | Avg Risk: 41.43 | Total Claims: 375 | High-risk claims: 169 | Rule flags: 31
+Udaipur Aarogya Medical College (HOSP_072) | State: Rajasthan | District: Udaipur | Type: Private | Avg Risk: 40.62 | Total Claims: 435 | High-risk claims: 174 | Rule flags: 33
+New Jan Arogya Medical College (HOSP_067) | State: Delhi | District: New Delhi | Type: Government | Avg Risk: 40.07 | Total Claims: 382 | High-risk claims: 143 | Rule flags: 22
+Jodhpur Swasthya Institute of Medical Sciences (HOSP_004) | State: Rajasthan | District: Jodhpur | Type: Private | Avg Risk: 39.54 | Total Claims: 356 | High-risk claims: 85 | Rule flags: 27
+Vadodara Sanjivani Super Speciality Hospital (HOSP_009) | State: Gujarat | District: Vadodara | Type: Government | Avg Risk: 39.49 | Total Claims: 402 | High-risk claims: 166 | Rule flags: 23
+
+Detected Anomaly Types
+------------------------------------------------------------
+- Machine-learning-based anomalies (Isolation Forest & Local Outlier Factor).
+- Up-coding: claim amounts significantly higher than district-procedure averages.
+- Ghost billing: patients with unusually high repeat claims in a month.
+- Claim surge: hospitals with abrupt spikes in monthly claim volume.
+
+Suggested Audit Priorities
+------------------------------------------------------------
+Varanasi Sanjivani Hospital (HOSP_050) [Uttar Pradesh - Varanasi, Private]: High audit priority.
+Udaipur Aarogya Medical College (HOSP_072) [Rajasthan - Udaipur, Private]: High audit priority.
+New Jan Arogya Medical College (HOSP_067) [Delhi - New Delhi, Government]: High audit priority.
+Jodhpur Swasthya Institute of Medical Sciences (HOSP_004) [Rajasthan - Jodhpur, Private]: High audit priority.
+Vadodara Sanjivani Super Speciality Hospital (HOSP_009) [Gujarat - Vadodara, Government]: High audit priority.
+
+Risk Score Distribution
+------------------------------------------------------------
+Low   : 40 hospitals
+Medium: 24 hospitals
+High  : 16 hospitals

@@ -1,0 +1,33 @@
+Ayushman Bharat Fraud Detection Report
+============================================================
+
+Generated at: 2026-02-28T12:37:21
+
+Summary
+------------------------------------------------------------
+Total claims analysed       : 739
+Suspicious (ML) claims      : 0
+Rule-flagged claims         : 39
+
+Top 5 Risky Hospitals (by average risk score)
+------------------------------------------------------------
+Ahmedabad Sanjeevan Institute of Medical Sciences (HOSP_066) | State: Gujarat | District: Ahmedabad | Type: Private | Avg Risk: 34.86 | Total Claims: 376 | High-risk claims: 46 | Rule flags: 20
+Ahmedabad Ayushmaan Super Speciality Hospital (HOSP_038) | State: Gujarat | District: Ahmedabad | Type: Government | Avg Risk: 33.11 | Total Claims: 363 | High-risk claims: 23 | Rule flags: 19
+
+Detected Anomaly Types
+------------------------------------------------------------
+- Machine-learning-based anomalies (Isolation Forest & Local Outlier Factor).
+- Up-coding: claim amounts significantly higher than district-procedure averages.
+- Ghost billing: patients with unusually high repeat claims in a month.
+- Claim surge: hospitals with abrupt spikes in monthly claim volume.
+
+Suggested Audit Priorities
+------------------------------------------------------------
+Ahmedabad Sanjeevan Institute of Medical Sciences (HOSP_066) [Gujarat - Ahmedabad, Private]: Medium audit priority.
+Ahmedabad Ayushmaan Super Speciality Hospital (HOSP_038) [Gujarat - Ahmedabad, Government]: Medium audit priority.
+
+Risk Score Distribution
+------------------------------------------------------------
+Low   : 2 hospitals
+Medium: 0 hospitals
+High  : 0 hospitals

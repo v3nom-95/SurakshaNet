@@ -1,0 +1,74 @@
+================================================================================
+SURAKSHANET SECURITY ARCHITECTURE & FRAUD DETECTION LOGIC
+================================================================================
+
+1. PROJECT ARCHITECTURE OVERVIEW
+--------------------------------
+The system follows a modern decoupled architecture designed for high-throughput
+National Health Stack monitoring:
+
+[ Frontend (Next.js) ] <---> [ Backend (FastAPI) ] <---> [ Database (SQLite) ]
+         |                          |                           |
+   Glassmorphism UI           ML Security Agent           94,500+ Records
+   Real-time Polling          Risk Scoring Engine         Injected Fraud Patterns
+
+- Frontend: Built with Next.js 15+, using Recharts for visualization and Lucide 
+  for security iconography. Communicates with backend every 30 seconds.
+- Backend: High-performance FastAPI server that orchestrates the data pipeline,
+  feature engineering, and Machine Learning training.
+- Database: SQLite database (claims.db) containing scaled claims data including 
+  complex hospital and patient metadata.
+
+2. HOW SUSPICIOUS CLAIMS ARE CLASSIFIED
+---------------------------------------
+A claim is flagged as "Suspicious" if it triggers EITHER the ML Anomaly Detector
+OR one of the Regulatory Rule-Based Flags.
+
+A. MACHINE LEARNING ANOMALIES (Advanced Detection)
+The system uses an "Ensemble Outlier Detection" approach:
+   - Isolation Forest: Identifies "lone" claims that exist in sparsely populated 
+     regions of the feature space (e.g., extremely high cost vs LOS).
+   - Local Outlier Factor (LOF): Detects claims that vary significantly from 
+     their dynamic neighborhood (e.g., a specific hospital charging more than
+     nearby hospitals for the same procedure).
+   - Classification Threshold: A combined score > 0.7 triggers a "Model Flag".
+
+B. REGULATORY RULE-BASED FLAGS (Heuristics)
+   - UP-CODING: Triggered if Claim Amount > 200% of the district's average 
+     cost for that specific Procedure Code.
+   - GHOST BILLING: Triggered if the same Patient ID appears > 3 times at the 
+     same hospital within a single month (indicator of fabricated claims).
+   - CLAIM SURGE: Triggered if a hospital's monthly volume exceeds 250% of 
+     its historical average monthly volume (indicator of massive fraud spikes).
+
+3. THE FEATURE ENGINEERING PIPELINE
+-----------------------------------
+The models don't just "see" raw numbers; the backend engineers 6 specialized
+security metrics for every claim:
+- claim_amount_norm: Scaled cost.
+- length_of_stay: Duration of hospitalization.
+- avg_claim_per_hospital: The baseline behavior of the facility.
+- claim_frequency_per_month: Volume metrics for the facility.
+- procedure_cost_deviation: Cost variance against regional averages.
+- patient_repeat_ratio: Concentration of claims for single users.
+
+4. RISK SCORING ENGINE
+----------------------
+Every claim is assigned a "Risk Score" (0-100) using a weighted algorithm:
+- 50% Weight: ML Anomaly Score.
+- 30% Weight: Procedure Cost Deviation.
+- 20% Weight: Claim Frequency Metrics.
+
+Hospitals are then ranked based on their "Average Risk Score" and total count
+of flagged claims to prioritize them for on-ground audits.
+
+5. AI AUDIT REPORT GENERATOR
+----------------------------
+The system includes a reporting module that performs "Post-Hoc Analysis". It
+examines all current flags and synthesizes a human-readable audit priority 
+summary, identifying the exact reasons (e.g., "Hospital X shows 15% Ghost 
+Billing indicators") why a specific region needs investigation.
+
+================================================================================
+Generated for: Ayushman Bharat National SurakshaNet Dashboard
+================================================================================

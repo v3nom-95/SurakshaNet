@@ -1,0 +1,39 @@
+Ayushman Bharat Fraud Detection Report
+============================================================
+
+Generated at: 2026-03-05T12:38:53
+
+Summary
+------------------------------------------------------------
+Total claims analysed       : 2328
+Suspicious (ML) claims      : 2
+Rule-flagged claims         : 155
+
+Top 5 Risky Hospitals (by average risk score)
+------------------------------------------------------------
+Karimnagar Ashirwad Hospital (HOSP_071) | State: Telangana | District: Karimnagar | Type: Private | Avg Risk: 35.63 | Total Claims: 431 | High-risk claims: 76 | Rule flags: 29
+Karimnagar Navjeevan Institute of Medical Sciences (HOSP_054) | State: Telangana | District: Karimnagar | Type: Government | Avg Risk: 33.84 | Total Claims: 405 | High-risk claims: 31 | Rule flags: 25
+Karimnagar Navjeevan Super Speciality Hospital (HOSP_076) | State: Telangana | District: Karimnagar | Type: Government | Avg Risk: 33.05 | Total Claims: 391 | High-risk claims: 26 | Rule flags: 29
+Karimnagar Ashirwad Multi Speciality Hospital (HOSP_011) | State: Telangana | District: Karimnagar | Type: Trust | Avg Risk: 32.36 | Total Claims: 379 | High-risk claims: 23 | Rule flags: 23
+Karimnagar Ayushmaan Hospital (HOSP_025) | State: Telangana | District: Karimnagar | Type: Government | Avg Risk: 32.23 | Total Claims: 366 | High-risk claims: 17 | Rule flags: 27
+
+Detected Anomaly Types
+------------------------------------------------------------
+- Machine-learning-based anomalies (Isolation Forest & Local Outlier Factor).
+- Up-coding: claim amounts significantly higher than district-procedure averages.
+- Ghost billing: patients with unusually high repeat claims in a month.
+- Claim surge: hospitals with abrupt spikes in monthly claim volume.
+
+Suggested Audit Priorities
+------------------------------------------------------------
+Karimnagar Ashirwad Hospital (HOSP_071) [Telangana - Karimnagar, Private]: Medium audit priority.
+Karimnagar Navjeevan Institute of Medical Sciences (HOSP_054) [Telangana - Karimnagar, Government]: Medium audit priority.
+Karimnagar Navjeevan Super Speciality Hospital (HOSP_076) [Telangana - Karimnagar, Government]: Medium audit priority.
+Karimnagar Ashirwad Multi Speciality Hospital (HOSP_011) [Telangana - Karimnagar, Trust]: Medium audit priority.
+Karimnagar Ayushmaan Hospital (HOSP_025) [Telangana - Karimnagar, Government]: Medium audit priority.
+
+Risk Score Distribution
+------------------------------------------------------------
+Low   : 5 hospitals
+Medium: 1 hospitals
+High  : 0 hospitals
