@@ -7,7 +7,10 @@ import HospitalsTable from '@/components/HospitalsTable';
 import ClaimsTable from '@/components/ClaimsTable';
 import ReportView from '@/components/ReportView';
 import LoginForm from '@/components/LoginForm';
+import AgentChat from '@/components/AgentChat';
 import { ShieldAlert, RefreshCw, Filter, LogOut, User as UserIcon } from 'lucide-react';
+
+const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -52,9 +55,9 @@ export default function Home() {
     try {
       const query = `state=${filters.state}&district=${filters.district}`;
       const [summaryResp, hospitalsResp, claimsResp] = await Promise.all([
-        fetch(`http://localhost:8000/get-summary?${query}`),
-        fetch(`http://localhost:8000/get-all-hospitals?${query}`),
-        fetch(`http://localhost:8000/get-claim-anomalies?limit=50&${query}`)
+        fetch(`${API}/get-summary?${query}`),
+        fetch(`${API}/get-all-hospitals?${query}`),
+        fetch(`${API}/get-claim-anomalies?limit=50&${query}`)
       ]);
 
       if (!summaryResp.ok || !hospitalsResp.ok || !claimsResp.ok) {
@@ -70,7 +73,7 @@ export default function Home() {
       setClaims(claims);
 
       if (stateOptions.length === 0) {
-        const allResp = await fetch('http://localhost:8000/get-all-hospitals?state=All&district=All');
+        const allResp = await fetch(`${API}/get-all-hospitals?state=All&district=All`);
         const allData = await allResp.json();
         setAllHospitalData(allData);
         const states = Array.from(new Set(allData.map((h: any) => h.state))).sort() as string[];
@@ -90,7 +93,7 @@ export default function Home() {
     setLoading(true);
     try {
       const q = `query=${query}&state=${filters.state}&district=${filters.district}`;
-      const resp = await fetch(`http://localhost:8000/get-claims-search?${q}`);
+      const resp = await fetch(`${API}/get-claims-search?${q}`);
       const data = await resp.json();
       setClaims(data);
     } catch (err) {
@@ -153,6 +156,7 @@ export default function Home() {
       case 'hospitals': return <HospitalsTable hospitals={hospitals} />;
       case 'claims': return <ClaimsTable claims={claims} onSearch={handleSearch} searchQuery={searchQuery} />;
       case 'report': return <ReportView filters={filters} />;
+      case 'agent': return <AgentChat />;
       default: return <Dashboard data={summaryData} filters={filters} />;
     }
   };

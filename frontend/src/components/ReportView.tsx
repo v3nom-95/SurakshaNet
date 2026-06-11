@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { FileText, Wand2, Download, CheckCircle2, AlertCircle, ShieldAlert, Activity } from 'lucide-react';
 
+const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 interface ReportViewProps {
     filters: {
         state: string;
@@ -21,7 +23,7 @@ const ReportView: React.FC<ReportViewProps> = ({ filters }) => {
     const generateReport = async () => {
         setIsLoading(true);
         try {
-            const resp = await fetch(`http://localhost:8000/generate-report?state=${filters.state}&district=${filters.district}`);
+            const resp = await fetch(`${API}/generate-report?state=${filters.state}&district=${filters.district}`);
             const data = await resp.json();
             console.log("Report Data Received:", data);
             setReportText(data.report_text);

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { LayoutDashboard, Hospital, AlertCircle, FileText, Settings, ShieldAlert, LogOut } from 'lucide-react';
+import { LayoutDashboard, Hospital, AlertCircle, FileText, Settings, ShieldAlert, LogOut, Bot } from 'lucide-react';
 
 interface SidebarProps {
     activeTab: string;
@@ -14,6 +14,7 @@ const Sidebar: React.FC<SidebarProps & { user: string | null; onLogout: () => vo
         { id: 'hospitals', icon: Hospital, label: 'Hospital Risk' },
         { id: 'claims', icon: AlertCircle, label: 'Anomalies' },
         { id: 'report', icon: FileText, label: 'Reports' },
+        { id: 'agent', icon: Bot, label: 'AI Agent' },
     ];
 
     return (

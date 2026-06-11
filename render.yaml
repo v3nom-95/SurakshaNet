@@ -1,0 +1,36 @@
+services:
+  # ── Backend (FastAPI) ────────────────────────────────────────────────────────
+  - type: web
+    name: surakshanet-backend
+    runtime: python
+    rootDir: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn fraud_detection_agent.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ALGORAND_MNEMONIC
+        sync: false          # set manually in Render dashboard (never commit secrets)
+      - key: GEMINI_API_KEY
+        sync: false          # free key from https://aistudio.google.com/
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    disk:
+      name: surakshanet-data
+      mountPath: /data
+      sizeGB: 1
+
+  # ── Frontend (Next.js) ───────────────────────────────────────────────────────
+  - type: web
+    name: surakshanet-frontend
+    runtime: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        # Replace with your actual backend URL after first deploy, e.g.:
+        # value: https://surakshanet-backend.onrender.com
+        value: https://surakshanet-backend.onrender.com
+      - key: NODE_VERSION
+        value: "20.11.0"
+      - key: PORT
+        value: "3000"

@@ -1,0 +1,42 @@
+# ── Secrets ────────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# ── Database & generated data ───────────────────────────────────────────────
+fraud_detection_agent/database/claims.db
+fraud_detection_agent/data/mock_claims.csv
+fraud_detection_agent/reports/*.txt
+
+# ── Logs & scratch files ─────────────────────────────────────────────────────
+*.log
+out.txt
+import_log.txt
+server_log.txt
+backend_output.log
+
+# ── Node / Next.js ──────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+frontend/*.tsbuildinfo
+
+# ── OS ──────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
