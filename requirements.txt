@@ -7,7 +7,6 @@ pydantic==2.10.3
 py-algorand-sdk==2.7.0
 python-dotenv==1.0.1
 apscheduler==3.10.4
-# Web3 AI Agent
 langchain==0.3.25
 langchain-google-genai==2.1.4
 langchain-groq==0.3.4
