@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="assets/banner.png" alt="SurakshaNet Banner" width="100%" />
-</p>
-
-<p align="center">
   <img src="assets/logo.png" alt="SurakshaNet Logo" width="200" />
 </p>
 
